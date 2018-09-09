@@ -1,2 +1,47 @@
 # phd
 Python codes created in the course of my phd research on computational methods in lexical typology.
+
+Pipeline:
+
+TYPOLOGICAL DATA PREPARATION
+(1) db_preprocessing.py -- automatically fills the gaps in the input database
+smooth_db.csv - example of an input file
+Structure of the input file:
+8 fields separated with semicolons:
+lexeme;language;minimal context;translation of the context;frame;taxonomic class;semantic field;sense(direct vs. figurative)
+smooth_db_filled.csv - example of an output file
+
+(2) dbfile_into_matrix.py
+Turns DBfile into matrix (input format for the Dissect toolkit)
++ substitutes every minimal context from the database with the corresponding noun phrase
+
+Input files:
+smooth_db_filled.csv
+frame-vector.txt -- minimal context & noun phrase correspondences
+
+Output files:
+smooth.dm
+smooth.rows
+
+(3) list_compiler.py
+Compiles three lists:
+1) all noun phrases
+2) noun phrases illustrating the direct meanings only
+3) all relevant adjectives and nouns
+
+Input files:
+frame-vector.txt
+smooth_db_filled.csv
+
+Output files:
+smooth_phrases.txt
+smooth_phrases_dir.txt
+smooth_words.txt
+
+DISTRIBUTIONAL DATA PREPARATION
+(1) window.py -- computes vector representations for words and noun phrases from text corpora
+translit.py -- simple transliteration function
+vector_gladkij_doska.txt -- example of a vector file
+
+(2) prep_to_dissect.py
+combines all relevant vector files into matrix (input format for the dissect toolkit)
