@@ -35,23 +35,14 @@ def window(corp_out, corp_in, filetype, filename, function, dict):
     def list_from_statistics(adjectives, function):
         words = []
         phrases = {}
-        #phrases['прямо'] = []
         for adjective in adjectives:
             adjective = adjective.encode('utf-8')
             words.append(adjective)
             phrases[adjective] = []
             with codecs.open('./statistics/adjectives100/statistics_'+tr.translit(adjective)+'.txt', 'r', 'utf-8') as f_input:
-            #with open('./statistics/straight/statistics_prjamo_'+adjective+'.txt', 'r') as f_input:
                 for line in f_input:
                     line = line.strip()
                     line = line.split('\t')
-                    #if adjective == 'падать' or adjective == 'упасть':
-                     #   min = 50
-                    #if adjective[-7:] == 'скочить' or adjective[-8:] == 'валиться':
-                     #   min = 5
-                    #elif adjective == 'слететь':
-                     #   min = 10
-                    #else:
                     min = 10
                     if int(line[1])>=min:
                         line[0] = line[0].encode('utf-8')
@@ -108,7 +99,6 @@ def window(corp_out, corp_in, filetype, filename, function, dict):
 
                 with open('./'+pair[1]+'/vector_'+tr.translit(word)+'.txt', 'w') as f_res:
                     for string in strings:
-                        #print string
                         f_res.write(string.encode('utf-8') + '\r\n')
 
     def compute_phrasevector(corpora_pairs, phrases):

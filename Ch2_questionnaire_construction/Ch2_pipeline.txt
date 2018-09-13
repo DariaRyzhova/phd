@@ -1,0 +1,46 @@
+(1) Defining the members of the field // semi-automatically (not presented here)
+
+(2) statistics.py
+compiles a list of collocations for a given set of the lexemes constituting the field (based on a corpus data)
+_akinfi_ruscorp_with_morphology.txt -- example of a corpus file (RNC, morphological annotation)
+
+(3) distributional space preparation (see Ch1)
+computing vector representations: window.py
+vector processing: dissect.py
+
+(4) clustering
+
+	(4.1) CLUTO
+	prep_to_cluto.py -- slightly changes the format of the input (.dm) file
+		from: phrase + tab-separated dimension values
+		to:
+		number_of_rows number_of_columns
+		space-separated dimension values
+		(see 'data/smooth_phrases_to_cluto.dm')
+	cluto_clustering.sh -- runs various clustering algorithms using the cluto toolkit
+	Cluto/clusterings/sharp_phys_300_dec_agglo.112 -- example of an output file
+	get_result.py -- turns all the output files into a human readable format
+	Cluto/results_quest/sharp_phys_300_dec_agglo.112 -- example of an output file in a human readable format
+
+	(4.2) hierarchical clustering (SCIPY toolkit)
+	scipy_hc.py -- performs the clustering
+	SciPy/results_quest/smooth_hc_0.8.txt -- example of an output file (human readable)
+	SciPy/results_quest/smooth_hc_0.8_raw.txt -- example of an output file (raw)
+
+	(4.3) SCIKIT (K-Means)
+	scikit.py -- performs the clustering
+	Scikit/results_quest/smooth_kmeans_raw.txt -- example of an output file (raw)
+	Scikit/results_quest/smooth_kmeans.txt -- example of an output file (human readable)
+
+(5) Exctracting three items from every cluster
+randomchoice.py
+centroids.py
+
+EXAMPLES of the results:
+Scikit/results_quest/smooth_kmeans_rand.txt (random choice)
+SciPy/results_quest/smooth_hc_0.8_centr.txt (centroids)
+
+(6) Results evaluation
+evaluation.py
+eval_files/smooth_markup.txt -- example of a "gold standard" file (marked up manually)
+smooth_kmeans_rand_eval.txt -- example of the results evaluation	

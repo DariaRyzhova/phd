@@ -6,8 +6,6 @@ DistrDmFile = 'spaces/smooth_words.dm'
 DistrRowsFile = 'spaces/smooth_words.rows'
 itemsFile = '../Typological data preparation/smooth_phrases.txt'
 
-import re
-
 from composes.semantic_space.space import Space
 from composes.utils import io_utils
 from composes.utils import scoring_utils
